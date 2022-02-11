@@ -2,8 +2,10 @@
 
 #pragma comment(lib, "d3d11.lib")
 #pragma comment(lib, "dxgi.lib")
+#pragma comment(lib, "d3dcompiler.lib")
 
 #include <d3d11.h>
+#include <d3dcompiler.h>
 #include <DirectXMath.h>
 #include <wrl/client.h>
 using Microsoft::WRL::ComPtr;
@@ -47,6 +49,11 @@ public:
 	/// <param name="height">画面高さ</param>
 	/// <returns></returns>
 	bool Initialize(HWND hWnd, int width, int height);
+
+	// 2D描画用シェーダー
+	ComPtr<ID3D11VertexShader> m_VS = nullptr;
+	ComPtr<ID3D11PixelShader> m_PS = nullptr;
+	ComPtr<ID3D11InputLayout> m_InputLayout = nullptr;
 
 private:
 

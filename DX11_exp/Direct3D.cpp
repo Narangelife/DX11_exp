@@ -1,4 +1,5 @@
 #include "Direct3D.h"
+#include "framework.h"
 #include <windows.h>
 
 bool Direct3D::Initialize(HWND hWnd, int width, int height) {
@@ -88,6 +89,43 @@ bool Direct3D::Initialize(HWND hWnd, int width, int height) {
 
 	D3D11_VIEWPORT vp = { 0.0f, 0.0f, (float)width, (float)height, 0.0f, 1.0f };
 	m_deviceContext->RSSetViewports(1, &vp);
+
+	// シェーダー作成 =============================================================================
+	//頂点シェーダーの読み込みとコンパイル
+	ComPtr<ID3DBlob> compiledVS;
+	if (FAILED(D3DCompileFromFile(L"Shader/SampleShader.hlsl", nullptr, nullptr, "VT", "vs_5_0", 0, 0, &compiledVS, nullptr))) {
+		return false;
+	}
+
+	//ピクセルシェーダーの読み込みとコンパイル
+	ComPtr<ID3DBlob> compiledPS;
+	if (FAILED(D3DCompileFromFile(L"Shader/SampleShader.hlsl", nullptr, nullptr, "PixcelShader", "ps_5_0", 0, 0, &compiledPS, nullptr))) {
+		return false;
+	}
+
+	//頂点シェーダー作成
+	if (FAILED(m_divice->CreateVertexShader(compiledVS->GetBufferPointer(), compiledVS->GetBufferSize(), nullptr, &m_VS))) {
+		return false;
+	}
+
+	//ピクセルシェーダー作成
+	if (FAILED(m_divice->CreatePixelShader(compiledPS->GetBufferPointer(), compiledPS->GetBufferSize(), nullptr, &m_PS))) {
+		return false;
+	}
+
+	/// <summary>
+	/// 頂点毎の詳細な情報
+	/// </summary>
+	std::vector<D3D11_INPUT_ELEMENT_DESC> layout = {
+		{
+			"POSITION", 0, DXGI_FORMAT_R32G32B32A32_FLOAT, 0, 0, D3D11_INPUT_PER_VERTEX_DATA, 0
+		},
+	};
+
+	// 頂点インプットレイアウト作成
+	if (FAILED(m_divice->CreateInputLayout(&layout[0], layout.size(), compiledVS->GetBufferPointer(), compiledVS->GetBufferSize(), &m_InputLayout))) {
+		return false;
+	}
 
 
 	return true;

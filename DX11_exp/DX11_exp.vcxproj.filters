@@ -19,6 +19,9 @@
     <Filter Include="Main">
       <UniqueIdentifier>{3c2ced8b-d0b7-423d-a804-9fe31f8c2613}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Shader">
+      <UniqueIdentifier>{e2ebc930-0b32-47fd-9830-f2457dbc7a8f}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="framework.h">
