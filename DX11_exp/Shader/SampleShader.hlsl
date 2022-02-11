@@ -12,5 +12,5 @@ VertexOutput VT(float4 pos : POSITION) {
 
 // ピクセルシェーダー
 float4 PixcelShader(VertexOutput In) : SV_Target0{
-	return float4(0, 1, 0, 1);
+	return float4(0.92f, 0.64f, 1.0f, 1);
 }

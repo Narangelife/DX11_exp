@@ -139,7 +139,7 @@ BOOL InitInstance(HINSTANCE hInstance, int nCmdShow)
 
    // Direct3D インスタンス作成と初期化
    Direct3D::CreateInstance();
-   D3D.Initialize(hWnd, 1280, 720);
+   D3D.Initialize(hWnd, 720, 720);
 
    //=====================================================================================
 

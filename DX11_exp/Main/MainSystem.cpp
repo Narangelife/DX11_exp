@@ -7,7 +7,7 @@ void MainSystem::Initialize() {
 }
 
 void MainSystem::Execute() {
-	float color[4] = { 0.2f, 0.2f, 1.0f, 1.0f };
+	float color[4] = { 0.25f, 1.0f, 1.0f, 1.0f };
 	D3D.m_deviceContext->ClearRenderTargetView(D3D.m_backBufferView.Get(), color);
 
 	{
@@ -15,10 +15,13 @@ void MainSystem::Execute() {
 			DirectX::XMFLOAT3 POS;
 		};
 
-		VertexType v[3] = {
-			{{0, 0, 0}},
-			{{1, -1, 0}},
-			{{-1, -1, 0}}
+		VertexType v[6] = {
+			{{0, 1.0f, 0}},
+			{{0.87f, 0.5f, 0}},
+			{{-0.87f, 0.5f, 0}},
+			{{0.87f, -0.5f, 0}},
+			{{-0.87f, -0.5f, 0}},
+			{{0, -1.0f, 0}}
 		};
 
 		// 頂点バッファの作成 ==========================
@@ -50,8 +53,8 @@ void MainSystem::Execute() {
 		D3D.m_deviceContext->PSSetShader(D3D.m_PS.Get(), 0, 0);
 		D3D.m_deviceContext->IASetInputLayout(D3D.m_InputLayout.Get());
 
-		//描画実行
-		D3D.m_deviceContext->Draw(3, 0);
+
+		D3D.m_deviceContext->Draw(6, 0);
 	}
 
 	// バックバッファの中身を画面に描画
