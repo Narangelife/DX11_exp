@@ -5,6 +5,7 @@
 #include "DX11_exp.h"
 
 #include "Direct3D.h"
+#include "Main/MainSystem.h"
 
 #define MAX_LOADSTRING 100
 
@@ -53,6 +54,10 @@ int APIENTRY wWinMain(_In_ HINSTANCE hInstance,
             DispatchMessage(&msg);
         }
     }*/
+
+    MainSystem::CreateInstance();
+    MAINSYS.Initialize();
+
     while (1) {
         if (PeekMessage(&msg, nullptr, 0, 0, PM_REMOVE)) {
             if (msg.message == WM_QUIT) {
@@ -70,15 +75,11 @@ int APIENTRY wWinMain(_In_ HINSTANCE hInstance,
         //=                                                                      =
         //========================================================================
 
-        float color[4] = { 0.2f, 0.2f, 1.0f, 1.0f };
-        D3D.m_deviceContext->ClearRenderTargetView(D3D.m_backBufferView.Get(), color);
-
-        // バックバッファの中身を画面に描画
-        D3D.m_swapChain->Present(1, 0);
+        MAINSYS.Execute();
         
     }
     
-    // Direct3D インスタンスの削除
+    MainSystem::DeleteInstance();
     Direct3D::DeleteInstance();
 
     return (int) msg.wParam;

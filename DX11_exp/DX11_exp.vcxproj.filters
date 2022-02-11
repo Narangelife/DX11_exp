@@ -16,6 +16,9 @@
     <Filter Include="DirectX">
       <UniqueIdentifier>{ed48ddcf-c7e4-4fb4-ad64-42b51ab89c30}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Main">
+      <UniqueIdentifier>{3c2ced8b-d0b7-423d-a804-9fe31f8c2613}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="framework.h">
@@ -33,6 +36,9 @@
     <ClInclude Include="Direct3D.h">
       <Filter>DirectX</Filter>
     </ClInclude>
+    <ClInclude Include="Main\MainSystem.h">
+      <Filter>Main</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="DX11_exp.cpp">
@@ -40,6 +46,9 @@
     </ClCompile>
     <ClCompile Include="Direct3D.cpp">
       <Filter>DirectX</Filter>
+    </ClCompile>
+    <ClCompile Include="Main\MainSystem.cpp">
+      <Filter>Main</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>

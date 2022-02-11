@@ -143,12 +143,14 @@
     <ClInclude Include="Direct3D.h" />
     <ClInclude Include="DX11_exp.h" />
     <ClInclude Include="framework.h" />
+    <ClInclude Include="Main\MainSystem.h" />
     <ClInclude Include="Resource.h" />
     <ClInclude Include="targetver.h" />
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="Direct3D.cpp" />
     <ClCompile Include="DX11_exp.cpp" />
+    <ClCompile Include="Main\MainSystem.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ResourceCompile Include="DX11_exp.rc" />
